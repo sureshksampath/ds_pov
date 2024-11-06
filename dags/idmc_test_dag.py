@@ -24,8 +24,8 @@ begin = DummyOperator(
     dag=dag
 )
 
-IDMC_username = os.getenv('username')
-IDMC_password = os.getenv('password')
+IDMC_username = os.getenv('USERNAME')
+IDMC_password = os.getenv('PASSWORD')
 
 # Initialize Operators with necessary arguments
 login_task = InformaticaLoginOperator(
@@ -39,7 +39,7 @@ informatica_task_type= os.getenv('informatica_task_type')
 
 run_and_monitor_task = InformaticaRunAndMonitorJobOperator(
     task_id="run_and_monitor_task",
-    informatica_task_id="0022GD0Z000000000NO",
+    informatica_task_id="0022GD0Z0000000003NO",
     informatica_task_type="MTT",
     poll_interval=30  # Poll every 30 seconds
 )
