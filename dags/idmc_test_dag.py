@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from operators.informatica_login_operator import InformaticaLoginOperator
 from operators.informatica_run_and_monitor import InformaticaRunAndMonitorJobOperator
 from airflow.operators.dummy import DummyOperator
+from airflow.models import Variable
 import requests
 import os
 
@@ -24,7 +25,7 @@ begin = DummyOperator(
     dag=dag
 )
 
-IDMC_username = os.getenv('USERNAME')
+IDMCM_username = os.getenv('USERNAME')
 IDMC_password = os.getenv('PASSWORD')
 
 # Initialize Operators with necessary arguments
@@ -34,13 +35,10 @@ login_task = InformaticaLoginOperator(
     password=IDMC_password,
 )
 
-informatica_task_id = os.getenv('informatica_task_id')
-informatica_task_type= os.getenv('informatica_task_type')
-
 run_and_monitor_task = InformaticaRunAndMonitorJobOperator(
     task_id="run_and_monitor_task",
-    informatica_task_id="0022GD0Z0000000003NO",
-    informatica_task_type="MTT",
+    informatica_task_id=Variable.get('informatica_task_id'),
+    informatica_task_type=Variable.get('informatica_task_type'),
     poll_interval=30  # Poll every 30 seconds
 )
 
