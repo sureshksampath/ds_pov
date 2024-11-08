@@ -25,7 +25,7 @@ begin = DummyOperator(
     dag=dag
 )
 
-IDMCM_username = os.getenv('USERNAME')
+IDMC_username = os.getenv('USERNAME')
 IDMC_password = os.getenv('PASSWORD')
 
 # Initialize Operators with necessary arguments
