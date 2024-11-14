@@ -54,4 +54,5 @@ end = DummyOperator(
     dag=dag
 )
 
-begin >> login_task >> run_and_monitor_task >> run_and_monitor_task2 >> end
+#begin >> login_task >> run_and_monitor_task >> run_and_monitor_task2 >> end
+begin >> login_task >> run_and_monitor_task >> end
