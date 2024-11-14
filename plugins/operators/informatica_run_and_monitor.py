@@ -73,7 +73,7 @@ class InformaticaRunAndMonitorJobOperator(BaseOperator):
             
             if state == 1:
                 self.log.info("Job completed successfully.")
-                self.log.info({end_time})
+                #self.log.info({end_time})
                 time.sleep(60)
                 break
 
