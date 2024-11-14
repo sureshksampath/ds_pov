@@ -72,6 +72,7 @@ class InformaticaRunAndMonitorJobOperator(BaseOperator):
                 elif state == 1:
                     self.log.info("Job completed successfully.")
                     self.log.info({end_time})
+                    time.sleep(self.poll_interval)
                 break
             else:
                 self.log.info(f"Job still running. Checking again in {self.poll_interval} seconds...")
