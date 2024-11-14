@@ -64,7 +64,7 @@ class InformaticaRunAndMonitorJobOperator(BaseOperator):
             # Check for endTime and errorMsg
             end_time = status_data.get("endTime")
             error_msg = status_data.get("errorMsg")
-            state = status_data.get("state")
+            state = status_data.get("state",0)
 
             if state == 3:
                 raise Exception(f"Job failed with error: {error_msg}")
