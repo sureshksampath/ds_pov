@@ -59,7 +59,7 @@ class InformaticaRunAndMonitorJobOperator(BaseOperator):
             elif isinstance(response_data, dict):
                 status_data = response_data
             else:
-                status_date = response_data
+                status_data = response_data
                 #raise Exception(f"Unexpected response format: {response_data}")
                 #raise Exception(f"Unexpected response format: {response_data}")
 
