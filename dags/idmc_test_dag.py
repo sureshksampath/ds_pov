@@ -42,9 +42,16 @@ run_and_monitor_task = InformaticaRunAndMonitorJobOperator(
     poll_interval=30  # Poll every 30 seconds
 )
 
+run_and_monitor_task2 = InformaticaRunAndMonitorJobOperator(
+    task_id="run_and_monitor_task2",
+    informatica_task_id=Variable.get('informatica_task_id'),
+    informatica_task_type=Variable.get('informatica_task_type'),
+    poll_interval=30  # Poll every 30 seconds
+)
+
 end = DummyOperator(
     task_id = "end",
     dag=dag
 )
 
-begin >> login_task >> run_and_monitor_task >> end
+begin >> login_task >> run_and_monitor_task >> run_and_monitor_task2 >> end
