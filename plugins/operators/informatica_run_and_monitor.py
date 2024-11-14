@@ -66,13 +66,14 @@ class InformaticaRunAndMonitorJobOperator(BaseOperator):
             error_msg = status_data.get("errorMsg")
             state = status_data.get("state")
 
-            if end_time:
-                if error_msg and state == 3:
-                    raise Exception(f"Job failed with error: {error_msg}")
-                elif state == 1:
-                    self.log.info("Job completed successfully.")
-                    self.log.info({end_time})
-                    time.sleep(60)
+            if state == 3:
+                raise Exception(f"Job failed with error: {error_msg}")
+                break
+                
+            elif state == 1:
+                self.log.info("Job completed successfully.")
+                self.log.info({end_time})
+                time.sleep(60)
                 break
             else:
                 self.log.info(f"Job still running. Checking again in {self.poll_interval} seconds...")
