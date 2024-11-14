@@ -71,6 +71,8 @@ class InformaticaRunAndMonitorJobOperator(BaseOperator):
                 error_msg = "N/A"
                 state = 0
 
+            print(state)
+            
             if state == 3:
                 self.log.info(f"Job failed with error: {error_msg}")
                 raise Exception(f"Job failed with error: {error_msg}")
