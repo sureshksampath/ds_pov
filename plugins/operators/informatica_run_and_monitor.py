@@ -59,11 +59,12 @@ class InformaticaRunAndMonitorJobOperator(BaseOperator):
             elif isinstance(response_data, dict):
                 status_data = response_data
             else:
-                raise Exception(f"Unexpected response format: {response_data}")
+                status_date = response_data
+                #raise Exception(f"Unexpected response format: {response_data}")
+                #raise Exception(f"Unexpected response format: {response_data}")
 
             # Check for endTime and errorMsg
-            end_time = status_data.get("endTime")
-            error_msg = status_data.get("errorMsg")
+            error_msg = status_data.get("errorMsg","N/A")
             state = status_data.get("state",0)
 
             if state == 1:
