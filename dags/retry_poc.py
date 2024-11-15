@@ -1,9 +1,7 @@
 from airflow import DAG
 from datetime import datetime, timedelta
-from operators.informatica_login_operator import InformaticaLoginOperator
 from operators.informatica_run_and_monitor import InformaticaRunAndMonitorJobOperator
-from airflow.operators.dummy import DummyOperator
-from airflow.models import Variable
+from pendulum import datetime, duration
 import requests
 
 
@@ -32,4 +30,5 @@ with DAG(
         poll_interval=30,  # Polling interval in seconds
         retries=5,  # Override the default 3 retries with 5 for this specific task
         retry_delay=duration(minutes=1),  # Override the retry delay
+        dag=dag
     )
