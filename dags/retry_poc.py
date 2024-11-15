@@ -1,7 +1,11 @@
 from airflow import DAG
-from airflow.utils.dates import days_ago
-from pendulum import duration
-from informatica_run_and_monitor_operator import InformaticaRunAndMonitorJobOperator  # Import your custom operator
+from datetime import datetime, timedelta
+from operators.informatica_login_operator import InformaticaLoginOperator
+from operators.informatica_run_and_monitor import InformaticaRunAndMonitorJobOperator
+from airflow.operators.dummy import DummyOperator
+from airflow.models import Variable
+import requests
+
 
 # Define default_args with retry logic
 default_args = {
@@ -15,7 +19,7 @@ default_args = {
 with DAG(
     dag_id='informatica_job_retry_dag',
     default_args=default_args,
-    start_date=days_ago(1),
+    start_date=datetime(2024, 10, 10),
     schedule_interval="@daily",
     catchup=False
 ) as dag:
