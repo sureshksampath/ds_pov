@@ -1,6 +1,11 @@
 # In your Airflow DAG file
 from airflow import DAG
+from airflow.operators.dummy import DummyOperator
 from airflow.operators.ssh_operator import SSHOperator
+from airflow.models import Variable
+import requests
+import os
+
 from datetime import datetime, timedelta
 default_args = {
 'owner': 'your_name',
