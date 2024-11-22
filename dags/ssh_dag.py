@@ -1,8 +1,7 @@
 from airflow import DAG
 from datetime import datetime, timedelta
 from airflow.operators.dummy import DummyOperator
-from airflow.operators.ssh_operator import SSHOperator
-
+from airflow.providers.ssh.operators.ssh import SSHOperator
 
 default_args = {
     'owner': 'Cody',
